@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (whatsappLink) {
         whatsappLink.addEventListener('click', (e) => {
             e.preventDefault();
-            const phoneNumber = '573000000000'; // Replace with actual number
+            const phoneNumber = '573218162875'; // Replace with actual number
             const message = 'Hola Yeimi, me gustaría agendar una cita.';
             const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if(primaryWhatsappLink) {
         primaryWhatsappLink.addEventListener('click', (e) => {
             e.preventDefault();
-            const phoneNumber = '573000000000'; // Replace with actual number
+            const phoneNumber = '573218162875'; // Replace with actual number
             const message = 'Hola Yeimi, me gustaría obtener más información sobre tus servicios.';
             const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
