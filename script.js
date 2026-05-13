@@ -46,24 +46,35 @@ document.addEventListener('DOMContentLoaded', () => {
         yearElement.textContent = new Date().getFullYear();
     }
 
-    // 4. Form Submission Simulation
+    // 4. Form Submission - WhatsApp Integration
     const bookingForm = document.getElementById('booking-form');
     if (bookingForm) {
         bookingForm.addEventListener('submit', (e) => {
             e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const date = document.getElementById('date').value;
+            const service = document.getElementById('service').value;
+            const serviceName = document.getElementById('service').options[document.getElementById('service').selectedIndex].text;
+            
             const btn = bookingForm.querySelector('button[type="submit"]');
             const originalText = btn.textContent;
             
-            btn.textContent = 'Enviando...';
+            btn.textContent = 'Abriendo WhatsApp...';
             btn.disabled = true;
 
-            // Simulate API call delay
+            const phoneNumber = '573218162875';
+            const message = `Hola Yeimi! 👋%0AMe gustaría agendar una cita.%0A%0A*Detalles:*%0A👤 *Nombre:* ${name}%0A📅 *Fecha:* ${date}%0A💅 *Servicio:* ${serviceName}%0A%0A¿Tienes disponibilidad?`;
+            
+            const url = `https://wa.me/${phoneNumber}?text=${message}`;
+
+            // Simulate a brief delay for UX
             setTimeout(() => {
-                alert('¡Gracias por contactarme! He recibido tu solicitud de reserva y te contactaré pronto para confirmar.');
+                window.open(url, '_blank');
                 bookingForm.reset();
                 btn.textContent = originalText;
                 btn.disabled = false;
-            }, 1500);
+            }, 800);
         });
     }
 
