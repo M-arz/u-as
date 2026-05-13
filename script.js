@@ -101,4 +101,43 @@ document.addEventListener('DOMContentLoaded', () => {
             window.open(url, '_blank');
         });
     }
+
+    // 6. Lightbox Logic
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const closeBtn = document.querySelector('.lightbox-close');
+
+    if (lightbox && galleryItems) {
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const img = item.querySelector('img');
+                lightbox.style.display = 'block';
+                lightboxImg.src = img.src;
+                lightboxCaption.textContent = img.alt;
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            });
+        });
+
+        const closeLightbox = () => {
+            lightbox.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        };
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeLightbox);
+        }
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        // Close on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    }
 });
