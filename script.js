@@ -140,4 +140,23 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.key === 'Escape') closeLightbox();
         });
     }
+
+    // 7. Reveal on Scroll Logic
+    const revealElements = document.querySelectorAll('.reveal');
+    
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                // Optional: stop observing once it's revealed
+                // revealObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15 // Reveal when 15% of the element is visible
+    });
+
+    revealElements.forEach(el => {
+        revealObserver.observe(el);
+    });
 });
